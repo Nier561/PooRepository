@@ -6,6 +6,7 @@ public abstract class Personal {
 	protected String nombre;
 	protected String ciudad;
 	protected String telefono;
+	protected boolean empleado;
 	
 	public Personal(String codigo, String nombre, String ciudad, String telefono) {
 		super();
@@ -13,6 +14,7 @@ public abstract class Personal {
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.telefono = telefono;
+		this.empleado = false;
 	}
 
 	public String getCodigo() {
@@ -45,5 +47,13 @@ public abstract class Personal {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public boolean isEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(boolean empleado) {
+		this.empleado = empleado;
 	}
 }
