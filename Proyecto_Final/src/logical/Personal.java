@@ -2,16 +2,16 @@ package logical;
 
 public abstract class Personal {
 	
-	protected String codigo;
+	protected String cedula;
 	protected String nombre;
 	protected String ciudad;
 	protected String telefono;
 	protected String tipo;
 	protected boolean empleado;
 	
-	public Personal(String codigo, String nombre, String ciudad, String telefono, String tipo) {
+	public Personal(String cedula, String nombre, String ciudad, String telefono, String tipo) {
 		super();
-		this.codigo = codigo;
+		this.cedula = cedula;
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.telefono = telefono;
@@ -19,12 +19,12 @@ public abstract class Personal {
 		this.empleado = false;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCedula() {
+		return cedula;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setCodigo(String cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getNombre() {

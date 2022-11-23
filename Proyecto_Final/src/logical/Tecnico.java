@@ -5,8 +5,8 @@ public class Tecnico extends Personal{
 	private int anoExp;
 	private String areaTecnica;
 	
-	public Tecnico(String codigo, String nombre, String ciudad, String telefono, String tipo, int anoExp, String areaTecnica) {
-		super(codigo, nombre, ciudad, telefono, tipo);
+	public Tecnico(String cedula, String nombre, String ciudad, String telefono, String tipo, int anoExp, String areaTecnica) {
+		super(cedula, nombre, ciudad, telefono, tipo);
 		this.setAnoExp(anoExp);
 		this.setAreaTecnica(areaTecnica);
 	}

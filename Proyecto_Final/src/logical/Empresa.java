@@ -51,5 +51,20 @@ public class Empresa {
 		this.listCentro = listCentro;
 	}
 	
+	public void insertarPersonal(Personal personal) {
+		listPersonal.add(personal);
+	}
+	
+	public void insertarCentro(Centro centro) {
+		listCentro.add(centro);
+	}
+	
+	public void insertarSolicitudPersonal(SolicitudPersonal sp) {
+		listSolicitudPersonal.add(sp);
+	}
+	
+	public void insertarSolicitudCentro(SolicitudCentro sc) {
+		listSolicitudCentro.add(sc);
+	}
 
 }

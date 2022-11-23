@@ -4,8 +4,8 @@ public class Universitario extends Personal{
 	
 	private String carrera;
 	
-	public Universitario(String codigo, String nombre, String ciudad, String telefono, String tipo, String carrera) {
-		super(codigo, nombre, ciudad, telefono, tipo);
+	public Universitario(String cedula, String nombre, String ciudad, String telefono, String tipo, String carrera) {
+		super(cedula, nombre, ciudad, telefono, tipo);
 		this.setCarrera(carrera);
 	}
 
