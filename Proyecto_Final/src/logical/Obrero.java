@@ -4,8 +4,8 @@ public class Obrero extends Personal{
 
 	private String oficio;
 	
-	public Obrero(String cedula, String nombre, String ciudad, String telefono, String tipo,String oficio) {
-		super(cedula, nombre, ciudad, telefono, tipo);
+	public Obrero(String cedula, String nombre, String ciudad, String telefono, String oficio) {
+		super(cedula, nombre, ciudad, telefono);
 		this.setOficio(oficio);
 	}
 
