@@ -8,17 +8,23 @@ public class Empresa {
 	private ArrayList<SolicitudCentro> listSolicitudCentro;
 	private ArrayList<Personal> listPersonal;
 	private ArrayList<Centro> listCentro;
+	private static Empresa empresa = null;
 	
 	
-	public Empresa(ArrayList<SolicitudPersonal> listSolicitudPersonal, ArrayList<SolicitudCentro> listSolicitudCentro,
-			ArrayList<Personal> listPersonal, ArrayList<Centro> listCentro) {
+	private Empresa() {
 		super();
-		this.listSolicitudPersonal = listSolicitudPersonal;
-		this.listSolicitudCentro = listSolicitudCentro;
-		this.listPersonal = listPersonal;
-		this.listCentro = listCentro;
+		this.listSolicitudPersonal = new ArrayList<SolicitudPersonal>();
+		this.listSolicitudCentro = new ArrayList<SolicitudCentro>();
+		this.listPersonal = new ArrayList<Personal>();
+		this.listCentro = new ArrayList<Centro>();
 	}
 	
+	public static Empresa getInstance(){
+		   if(empresa == null){
+			   empresa = new Empresa();  
+		   } 	   
+		return empresa;
+	}
 	
 	public ArrayList<SolicitudPersonal> getListSolicitudPersonal() {
 		return listSolicitudPersonal;
