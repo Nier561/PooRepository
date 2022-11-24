@@ -6,16 +6,14 @@ public class Centro {
 	private String nombre;
 	private String ciudad;
 	private String telefono;
-	private Boolean empleado;
 	
 	
-	public Centro(String codigo, String nombre, String ciudad, String telefono, Boolean empleado) {
+	public Centro(String codigo, String nombre, String ciudad, String telefono) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.telefono = telefono;
-		this.empleado = empleado;
 	}
 	
 	
@@ -42,12 +40,6 @@ public class Centro {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-	public Boolean getEmpleado() {
-		return empleado;
-	}
-	public void setEmpleado(Boolean empleado) {
-		this.empleado = empleado;
 	}
 	
 	

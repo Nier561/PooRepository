@@ -75,12 +75,12 @@ public class RegSolicitudPersonal extends JDialog {
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Tipo de contrato:");
-				lblNewLabel_2.setBounds(10, 100, 92, 14);
+				lblNewLabel_2.setBounds(10, 100, 109, 14);
 				panel.add(lblNewLabel_2);
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Sueldo deseado:");
-				lblNewLabel_3.setBounds(10, 138, 92, 14);
+				lblNewLabel_3.setBounds(10, 138, 109, 14);
 				panel.add(lblNewLabel_3);
 			}
 			{
@@ -138,20 +138,9 @@ public class RegSolicitudPersonal extends JDialog {
 						String cedulaPersonal = txtCedula.getText();
 						String tipoContrato = cbxTipoContrato.getSelectedItem().toString();
 						String sueldoDeseado = cbxSueldoDeseado.getSelectedItem().toString();
-						Boolean licencia = false;
-						Boolean ingles = false;
-						Boolean mudarse = false;
-						if(rdbtnMudarse.isSelected()) {
-							mudarse = true;
-						}
-						
-						if(rdbtnLicencia.isSelected()) {
-							licencia = true;
-						}
-						
-						if(rdbtnIngles.isSelected()) {
-							ingles = true;
-						}
+						Boolean licencia = rdbtnLicencia.isSelected();
+						Boolean ingles = rdbtnIngles.isSelected();
+						Boolean mudarse = rdbtnMudarse.isSelected();
 						SolicitudPersonal SP = new SolicitudPersonal(codigo,cedulaPersonal,tipoContrato,sueldoDeseado,mudarse,licencia,ingles);
 						Empresa.getInstance().insertarSolicitudPersonal(SP);
 						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);

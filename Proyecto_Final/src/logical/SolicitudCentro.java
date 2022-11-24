@@ -18,7 +18,7 @@ public class SolicitudCentro {
 	private String areTecnica;
 	
 	
-	public SolicitudCentro(String codigo, String codCentro, String tipoPersonal, int cantPersonal, float match,
+	public SolicitudCentro(String codigo, String codCentro, String tipoPersonal, int cantPersonal,
 			String tipoContrato, String sueldo, Boolean dispMudarse, Boolean licenciaConducir, Boolean ingles,
 			String carrera, String oficio, int anoExp, String areTecnica) {
 		super();
@@ -26,7 +26,6 @@ public class SolicitudCentro {
 		this.codCentro = codCentro;
 		this.tipoPersonal = tipoPersonal;
 		this.cantPersonal = cantPersonal;
-		this.match = match;
 		this.tipoContrato = tipoContrato;
 		this.sueldo = sueldo;
 		this.dispMudarse = dispMudarse;
