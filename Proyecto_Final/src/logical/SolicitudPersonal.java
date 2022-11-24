@@ -5,13 +5,13 @@ public class SolicitudPersonal {
 	private String codigo;
 	private String cedulaPersonal;
 	private String tipoContrato;
-	private int sueldoDeseado;
+	private String sueldoDeseado;
 	private Boolean dispMudarse;
 	private Boolean licenciaConducir;
 	private Boolean ingles;
 	
 	
-	public SolicitudPersonal(String codigo, String cedulaPersonal, String tipoContrato, int sueldoDeseado,
+	public SolicitudPersonal(String codigo, String cedulaPersonal, String tipoContrato, String sueldoDeseado,
 			Boolean dispMudarse, Boolean licenciaConducir, Boolean ingles) {
 		super();
 		this.codigo = codigo;
@@ -42,10 +42,10 @@ public class SolicitudPersonal {
 	public void setTipoContrato(String tipoContrato) {
 		this.tipoContrato = tipoContrato;
 	}
-	public int getSueldoDeseado() {
+	public String getSueldoDeseado() {
 		return sueldoDeseado;
 	}
-	public void setSueldoDeseado(int sueldoDeseado) {
+	public void setSueldoDeseado(String sueldoDeseado) {
 		this.sueldoDeseado = sueldoDeseado;
 	}
 	public Boolean getDispMudarse() {
