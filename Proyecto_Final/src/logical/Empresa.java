@@ -9,7 +9,9 @@ public class Empresa {
 	private ArrayList<Personal> listPersonal;
 	private ArrayList<Centro> listCentro;
 	private static Empresa empresa = null;
-	
+	public static int generadorSolicitudPersonal = 1;
+	public static int generadorSolicitudCentro = 1;
+	public static int generadorCentro = 1;
 	
 	private Empresa() {
 		super();
@@ -57,14 +59,17 @@ public class Empresa {
 	
 	public void insertarCentro(Centro centro) {
 		listCentro.add(centro);
+		generadorCentro++;
 	}
 	
 	public void insertarSolicitudPersonal(SolicitudPersonal sp) {
 		listSolicitudPersonal.add(sp);
+		generadorSolicitudPersonal++;
 	}
 	
 	public void insertarSolicitudCentro(SolicitudCentro sc) {
 		listSolicitudCentro.add(sc);
+		generadorSolicitudCentro++;
 	}
 
 }
