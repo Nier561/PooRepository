@@ -9,10 +9,14 @@ public class SolicitudPersonal {
 	private Boolean dispMudarse;
 	private Boolean licenciaConducir;
 	private Boolean ingles;
+	private String carrera;
+	private int agnosExp;
+	private String areaTecnica;
+	private String oficio;
 	
 	
-	public SolicitudPersonal(String codigo, String cedulaPersonal, String tipoContrato, String sueldoDeseado,
-			Boolean dispMudarse, Boolean licenciaConducir, Boolean ingles) {
+	public SolicitudPersonal(String codigo, String cedulaPersonal, String tipoContrato, String sueldoDeseado, Boolean dispMudarse, 
+			Boolean licenciaConducir, Boolean ingles, String carrera, int agnosExp, String areaTecnica, String oficio) {
 		super();
 		this.codigo = codigo;
 		this.cedulaPersonal = cedulaPersonal;
@@ -21,8 +25,11 @@ public class SolicitudPersonal {
 		this.dispMudarse = dispMudarse;
 		this.licenciaConducir = licenciaConducir;
 		this.ingles = ingles;
+		this.carrera = carrera;
+		this.agnosExp = agnosExp;
+		this.areaTecnica = areaTecnica;
+		this.oficio = oficio;
 	}
-	
 	
 	public String getCodigo() {
 		return codigo;
@@ -66,6 +73,28 @@ public class SolicitudPersonal {
 	public void setIngles(Boolean ingles) {
 		this.ingles = ingles;
 	}
-	
-
+	public String getCarrera() {
+		return carrera;
+	}
+	public void setCarrera(String carrera) {
+		this.carrera = carrera;
+	}
+	public int getAgnosExp() {
+		return agnosExp;
+	}
+	public void setAgnosExp(int agnosExp) {
+		this.agnosExp = agnosExp;
+	}
+	public String getAreaTecnica() {
+		return areaTecnica;
+	}
+	public void setAreaTecnica(String areaTecnica) {
+		this.areaTecnica = areaTecnica;
+	}
+	public String getOficio() {
+		return oficio;
+	}
+	public void setOficio(String oficio) {
+		this.oficio = oficio;
+	}
 }
