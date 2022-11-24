@@ -71,5 +71,18 @@ public class Empresa {
 		listSolicitudCentro.add(sc);
 		generadorSolicitudCentro++;
 	}
-
+	
+	public Personal buscarPersonalByCedula(String cedula) {
+		Personal auxPersonal = null;
+		boolean encontrado = false;
+		int ind = 0;
+		while(ind < listPersonal.size() && !encontrado) {
+			auxPersonal = listPersonal.get(ind);
+			if(auxPersonal.getCedula().equalsIgnoreCase(cedula)) {
+				encontrado = true;
+			}
+			ind++;
+		}
+		return auxPersonal;
+	}
 }

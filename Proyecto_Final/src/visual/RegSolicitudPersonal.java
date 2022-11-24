@@ -10,7 +10,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import logical.Empresa;
+import logical.Obrero;
+import logical.Personal;
 import logical.SolicitudPersonal;
+import logical.Tecnico;
+import logical.Universitario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -75,12 +79,12 @@ public class RegSolicitudPersonal extends JDialog {
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Tipo de contrato:");
-				lblNewLabel_2.setBounds(10, 100, 109, 14);
+				lblNewLabel_2.setBounds(10, 100, 92, 14);
 				panel.add(lblNewLabel_2);
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Sueldo deseado:");
-				lblNewLabel_3.setBounds(10, 138, 109, 14);
+				lblNewLabel_3.setBounds(10, 138, 92, 14);
 				panel.add(lblNewLabel_3);
 			}
 			{
@@ -138,10 +142,38 @@ public class RegSolicitudPersonal extends JDialog {
 						String cedulaPersonal = txtCedula.getText();
 						String tipoContrato = cbxTipoContrato.getSelectedItem().toString();
 						String sueldoDeseado = cbxSueldoDeseado.getSelectedItem().toString();
-						Boolean licencia = rdbtnLicencia.isSelected();
-						Boolean ingles = rdbtnIngles.isSelected();
-						Boolean mudarse = rdbtnMudarse.isSelected();
-						SolicitudPersonal SP = new SolicitudPersonal(codigo,cedulaPersonal,tipoContrato,sueldoDeseado,mudarse,licencia,ingles);
+						Boolean licencia = false;
+						Boolean ingles = false;
+						Boolean mudarse = false;
+						String carrera = null;
+						int agnosExp = 0;
+						String areaTec = null;
+						String oficio = null;
+						Personal auxPersonal = Empresa.getInstance().buscarPersonalByCedula(cedulaPersonal);
+						if(auxPersonal instanceof Universitario) {
+							carrera = ((Universitario) auxPersonal).getCarrera();
+						}
+						
+						if(auxPersonal instanceof Tecnico) {
+							agnosExp = ((Tecnico) auxPersonal).getAnoExp();
+							areaTec = ((Tecnico) auxPersonal).getAreaTecnica();
+						}
+						
+						if(auxPersonal instanceof Obrero) {
+							oficio = ((Obrero) auxPersonal).getOficio();
+						}
+						if(rdbtnMudarse.isSelected()) {
+							mudarse = true;
+						}
+						
+						if(rdbtnLicencia.isSelected()) {
+							licencia = true;
+						}
+						
+						if(rdbtnIngles.isSelected()) {
+							ingles = true;
+						}
+						SolicitudPersonal SP = new SolicitudPersonal(codigo,cedulaPersonal,tipoContrato,sueldoDeseado,mudarse,licencia,ingles,carrera,agnosExp,areaTec,oficio);
 						Empresa.getInstance().insertarSolicitudPersonal(SP);
 						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();
