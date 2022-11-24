@@ -3,7 +3,7 @@ package logical;
 public class SolicitudPersonal {
 	
 	private String codigo;
-	private String codigoPersonal;
+	private String cedulaPersonal;
 	private String tipoContrato;
 	private int sueldoDeseado;
 	private Boolean dispMudarse;
@@ -11,11 +11,11 @@ public class SolicitudPersonal {
 	private Boolean ingles;
 	
 	
-	public SolicitudPersonal(String codigo, String codigoPersonal, String tipoContrato, int sueldoDeseado,
+	public SolicitudPersonal(String codigo, String cedulaPersonal, String tipoContrato, int sueldoDeseado,
 			Boolean dispMudarse, Boolean licenciaConducir, Boolean ingles) {
 		super();
 		this.codigo = codigo;
-		this.codigoPersonal = codigoPersonal;
+		this.cedulaPersonal = cedulaPersonal;
 		this.tipoContrato = tipoContrato;
 		this.sueldoDeseado = sueldoDeseado;
 		this.dispMudarse = dispMudarse;
@@ -30,11 +30,11 @@ public class SolicitudPersonal {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public String getCodigoPersonal() {
-		return codigoPersonal;
+	public String getCedulaPersonal() {
+		return cedulaPersonal;
 	}
-	public void setCodigoPersonal(String codigoPersonal) {
-		this.codigoPersonal = codigoPersonal;
+	public void setCedulaPersonal(String cedulaPersonal) {
+		this.cedulaPersonal = cedulaPersonal;
 	}
 	public String getTipoContrato() {
 		return tipoContrato;
