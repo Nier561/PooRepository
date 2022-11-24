@@ -267,7 +267,7 @@ public class RegSolicitudCentro extends JDialog {
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String codigo = txtCodigo.getText();
-						int cantPersonal = (int) spnCantPerson.getValue();
+						int cantPersonal = (Integer) spnCantPerson.getValue();
 						String tipoPersonal = null;
 						String carrera = null;
 						String oficio = null;
@@ -280,7 +280,7 @@ public class RegSolicitudCentro extends JDialog {
 						if(rdbtnObrero.isSelected()) {
 							tipoPersonal = "Obrero";
 							oficio = txtOficio.getText();
-							anoExp = (int) spnAgno.getValue();
+							anoExp = (Integer) spnAgno.getValue();
 						}
 						if(rdbtnTecnico.isSelected()) {
 							tipoPersonal = "Tecnico";
