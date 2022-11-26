@@ -85,4 +85,24 @@ public class Empresa {
 		}
 		return auxPersonal;
 	}
+
+	public void eliminarPersonal(Personal selected) {
+		int ind = -1;
+		ind = buscarIndByPersonal(selected.getCedula());
+		listPersonal.remove(ind);
+	}
+	
+	private int buscarIndByPersonal(String codigo) {
+		int aux = -1;
+		int ind = 0;
+		boolean encontrado = false;
+		while(ind < listPersonal.size() && !encontrado) {
+			if(listPersonal.get(ind).getCedula().equalsIgnoreCase(codigo)) {
+				aux = ind;
+				encontrado = true;
+			}
+			ind++;
+		}
+		return aux;
+	}
 }
