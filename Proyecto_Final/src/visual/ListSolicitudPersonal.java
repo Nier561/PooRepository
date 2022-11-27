@@ -12,7 +12,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logical.Empresa;
-import logical.Personal;
 import logical.SolicitudPersonal;
 
 import javax.swing.JScrollPane;
