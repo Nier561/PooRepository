@@ -24,6 +24,10 @@ import java.awt.event.MouseEvent;
 
 public class ListSolicitudPersonal extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton btnEliminar;
 	private JButton btnCancelar;
@@ -94,6 +98,7 @@ public class ListSolicitudPersonal extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int option;

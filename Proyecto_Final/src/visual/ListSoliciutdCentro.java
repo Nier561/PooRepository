@@ -11,8 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logical.Centro;
 import logical.Empresa;
-import logical.Personal;
+import logical.SolicitudCentro;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,7 +23,7 @@ import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListPersonal extends JDialog {
+public class ListSoliciutdCentro extends JDialog {
 
 	/**
 	 * 
@@ -34,14 +35,14 @@ public class ListPersonal extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object[] rows;
-	private Personal selected = null;
+	private SolicitudCentro selected = null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ListPersonal dialog = new ListPersonal();
+			ListSoliciutdCentro dialog = new ListSoliciutdCentro();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,9 +53,9 @@ public class ListPersonal extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListPersonal() {
-		setTitle("Listado de Personal");
-		setBounds(100, 100, 596, 389);
+	public ListSoliciutdCentro() {
+		setTitle("Listado de Centro");
+		setBounds(100, 100, 650, 389);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -71,7 +72,7 @@ public class ListPersonal extends JDialog {
 			panel.add(scrollPane, BorderLayout.CENTER);
 			
 			model = new DefaultTableModel();
-			String[] columnas = {"Codigo" , "Nombre", "Ciudad", "Telefono", "Contratado"};
+			String[] columnas = {"Codigo" , "CodigoCentro", "TipoPersonal", "TipoContrato", "SueldoPropuesto", "CantDeseado"};
 			model.setColumnIdentifiers(columnas);
 			table = new JTable();
 			table.addMouseListener(new MouseAdapter() {
@@ -81,7 +82,7 @@ public class ListPersonal extends JDialog {
 					rowSelected = table.getSelectedRow();
 					if(rowSelected >= 0) {
 						btnEliminar.setEnabled(true);
-						selected = Empresa.getInstance().buscarPersonalByCedula(table.getValueAt(rowSelected, 0).toString());
+						selected = Empresa.getInstance().buscarSolicitudCentroByCod(table.getValueAt(rowSelected, 0).toString());
 					}
 				}
 			});
@@ -99,10 +100,10 @@ public class ListPersonal extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						int option;
 						if(selected != null) {
-							option = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas borrar la cuenta con el codigo: "+selected.getCedula(), "Confirmacion", JOptionPane.YES_NO_OPTION);
+							option = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas borrar la solicitud con el codigo: "+selected.getCodigo(), "Confirmacion", JOptionPane.YES_NO_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
-								Empresa.getInstance().eliminarPersonal(selected);
-								loadPersonal();
+								Empresa.getInstance().eliminarSolicitudCentro(selected);
+								loadSolCentro();
 								btnEliminar.setEnabled(false);
 							}
 						}
@@ -124,18 +125,19 @@ public class ListPersonal extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
-		loadPersonal();
+		loadSolCentro();
 	}
 
-	private void loadPersonal() {
+	private void loadSolCentro() {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
-		for (Personal personal : Empresa.getInstance().getListPersonal()) {
-			rows[0] = personal.getCedula();
-			rows[1] = personal.getNombre();
-			rows[2] = personal.getCiudad();
-			rows[3] = personal.getTelefono();
-			rows[4] = personal.isEmpleado();
+		for (SolicitudCentro solCentro : Empresa.getInstance().getListSolicitudCentro()) {
+			rows[0] = solCentro.getCodigo();
+			rows[1] = solCentro.getCodCentro();
+			rows[2] = solCentro.getTipoPersonal();
+			rows[3] = solCentro.getTipoContrato();
+			rows[4] = solCentro.getSueldo();
+			rows[5] = solCentro.getCantPersonal();
 			
 			model.addRow(rows);
 		}

@@ -3,7 +3,6 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,6 +14,10 @@ import java.awt.event.ActionEvent;
 
 public class Principal extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
 	/**
@@ -67,6 +70,26 @@ public class Principal extends JDialog {
 					});
 					mnPersonal.add(mntmRegistroSolPer);
 				}
+				{
+					JMenuItem mntmNewMenuItem = new JMenuItem("Listar Personal");
+					mntmNewMenuItem.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListPersonal listPersonal = new ListPersonal();
+							listPersonal.setVisible(true);
+						}
+					});
+					mnPersonal.add(mntmNewMenuItem);
+				}
+				{
+					JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listar Soicitudes de Personal");
+					mntmNewMenuItem_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListSolicitudPersonal listSolPersonal = new ListSolicitudPersonal();
+							listSolPersonal.setVisible(true);
+						}
+					});
+					mnPersonal.add(mntmNewMenuItem_1);
+				}
 			}
 			{
 				JMenu mnCentro = new JMenu("Centro");
@@ -90,6 +113,26 @@ public class Principal extends JDialog {
 						}
 					});
 					mnCentro.add(mntmRegistroSolCentro);
+				}
+				{
+					JMenuItem mntmNewMenuItem_2 = new JMenuItem("Listar Centro");
+					mntmNewMenuItem_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListCentro listCentro = new ListCentro();
+							listCentro.setVisible(true);
+						}
+					});
+					mnCentro.add(mntmNewMenuItem_2);
+				}
+				{
+					JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listar Solicitud Centro");
+					mntmNewMenuItem_3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListSoliciutdCentro listSolCentro = new ListSoliciutdCentro();
+							listSolCentro.setVisible(true);
+						}
+					});
+					mnCentro.add(mntmNewMenuItem_3);
 				}
 			}
 		}

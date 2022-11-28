@@ -31,7 +31,7 @@ public class RegCentro extends JDialog {
 	private JButton btnCancelar;
 	private JTextField txtCedula;
 	private JTextField txtNombre;
-	private JTextField txtDireccion;
+	private JTextField txtCiudad;
 	private JTextField txtTelefono;
 
 	/**
@@ -83,18 +83,18 @@ public class RegCentro extends JDialog {
 			lblNombre.setBounds(22, 64, 75, 14);
 			panel.add(lblNombre);
 			
-			JLabel lblDireccion = new JLabel("Direccion:");
-			lblDireccion.setBounds(22, 103, 75, 14);
-			panel.add(lblDireccion);
+			JLabel lblCiudad = new JLabel("Ciudad:");
+			lblCiudad.setBounds(22, 103, 75, 14);
+			panel.add(lblCiudad);
 			
 			JLabel lblTelefono = new JLabel("Telefono:");
 			lblTelefono.setBounds(22, 142, 75, 14);
 			panel.add(lblTelefono);
 			
-			txtDireccion = new JTextField();
-			txtDireccion.setBounds(124, 100, 225, 20);
-			panel.add(txtDireccion);
-			txtDireccion.setColumns(10);
+			txtCiudad = new JTextField();
+			txtCiudad.setBounds(124, 100, 225, 20);
+			panel.add(txtCiudad);
+			txtCiudad.setColumns(10);
 			
 			txtTelefono = new JTextField();
 			txtTelefono.setBounds(124, 139, 225, 20);
@@ -113,7 +113,7 @@ public class RegCentro extends JDialog {
 						Centro auxCentro = null;
 						String cedula = txtCedula.getText();
 						String nombre = txtNombre.getText();
-						String direccion = txtDireccion.getText();
+						String direccion = txtCiudad.getText();
 						String telefono = txtTelefono.getText();
 						
 						auxCentro = new Centro(cedula,nombre,direccion,telefono);
@@ -143,7 +143,7 @@ public class RegCentro extends JDialog {
 	private void clean() {
 		txtCedula.setText("");
 		txtNombre.setText("");
-		txtDireccion.setText("");
+		txtCiudad.setText("");
 		txtTelefono.setText("");
 	}
 }

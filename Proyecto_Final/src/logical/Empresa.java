@@ -153,4 +153,72 @@ public class Empresa {
 		}
 		return aux;
 	}
+	
+	public Centro buscarCentroByCod(String cod) {
+		Centro auxCentro = null;
+		boolean encontrado = false;
+		int ind = 0;
+		while(ind < listCentro.size() && !encontrado) {
+			auxCentro = listCentro.get(ind);
+			if(auxCentro.getCodigo().equalsIgnoreCase(cod)) {
+				encontrado = true;
+			}
+			ind++;
+		}
+		return auxCentro;
+	}
+	
+	public void eliminarCentro(Centro selected) {
+		int ind = -1;
+		ind = buscarIndByCentro(selected.getCodigo());
+		listCentro.remove(ind);
+	}
+	
+	public int buscarIndByCentro(String codigo) {
+		int aux = -1;
+		int ind = 0;
+		boolean encontrado = false;
+		while(ind < listCentro.size() && !encontrado) {
+			if(listCentro.get(ind).getCodigo().equalsIgnoreCase(codigo)) {
+				aux = ind;
+				encontrado = true;
+			}
+			ind++;
+		}
+		return aux;
+	}
+	
+	public SolicitudCentro buscarSolicitudCentroByCod(String cod) {
+		SolicitudCentro auxSolCentro = null;
+		boolean encontrado = false;
+		int ind = 0;
+		while(ind < listSolicitudCentro.size() && !encontrado) {
+			auxSolCentro = listSolicitudCentro.get(ind);
+			if(auxSolCentro.getCodigo().equalsIgnoreCase(cod)) {
+				encontrado = true;
+			}
+			ind++;
+		}
+		return auxSolCentro;
+	}
+	
+	public void eliminarSolicitudCentro(SolicitudCentro selected) {
+		int ind = -1;
+		ind = buscarIndBySolicitudCentro(selected.getCodigo());
+		listSolicitudCentro.remove(ind);
+	}
+	
+	public int buscarIndBySolicitudCentro(String codigo) {
+		int aux = -1;
+		int ind = 0;
+		boolean encontrado = false;
+		while(ind < listSolicitudCentro.size() && !encontrado) {
+			if(listSolicitudCentro.get(ind).getCodigo().equalsIgnoreCase(codigo)) {
+				aux = ind;
+				encontrado = true;
+			}
+			ind++;
+		}
+		return aux;
+	}
 }

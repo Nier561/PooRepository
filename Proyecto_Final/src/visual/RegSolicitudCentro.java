@@ -254,6 +254,7 @@ public class RegSolicitudCentro extends JDialog {
 			txtOficio.setColumns(10);
 			
 			spnCantPerson = new JSpinner();
+			spnCantPerson.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 			spnCantPerson.setBounds(345, 421, 50, 22);
 			panel.add(spnCantPerson);
 		}
