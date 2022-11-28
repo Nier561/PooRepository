@@ -85,4 +85,72 @@ public class Empresa {
 		}
 		return auxPersonal;
 	}
+	
+	public SolicitudPersonal buscarSolicitudPersonalByCodigo(String codigo) {
+		SolicitudPersonal auxSolicitudPersonal = null;
+		boolean encontrado = false;
+		int ind = 0;
+		while(ind < listSolicitudPersonal.size() && !encontrado) {
+			auxSolicitudPersonal = listSolicitudPersonal.get(ind);
+			if(auxSolicitudPersonal.getCodigo().equalsIgnoreCase(codigo)) {
+				encontrado = true;
+			}
+			ind++;
+		}
+		return auxSolicitudPersonal;
+	}
+
+	public void eliminarPersonal(Personal selected) {
+		int ind = -1;
+		ind = buscarIndByPersonal(selected.getCedula());
+		listPersonal.remove(ind);
+	}
+	
+	public int buscarIndByPersonal(String codigo) {
+		int aux = -1;
+		int ind = 0;
+		boolean encontrado = false;
+		while(ind < listPersonal.size() && !encontrado) {
+			if(listPersonal.get(ind).getCedula().equalsIgnoreCase(codigo)) {
+				aux = ind;
+				encontrado = true;
+			}
+			ind++;
+		}
+		return aux;
+	}
+	
+	public String identificarTipo(Personal personal) {
+		String resp = null;
+		if(personal instanceof Universitario) {
+			resp = "Universitario";
+		}
+		if(personal instanceof Tecnico) {
+			resp = "Tecnico";
+		}
+		if(personal instanceof Obrero) {
+			resp = "Obrero";
+		}
+		return resp;
+	}
+
+	public void eliminarSolicitudPersonal(SolicitudPersonal selected) {
+		int ind = -1;
+		ind = buscarIndBySolicitudPersonal(selected.getCodigo());
+		listSolicitudPersonal.remove(ind);
+	}
+	
+	public int buscarIndBySolicitudPersonal(String codigo) {
+		int aux = -1;
+		int ind = 0;
+		boolean encontrado = false;
+		while(ind < listSolicitudPersonal.size() && !encontrado) {
+			if(listSolicitudPersonal.get(ind).getCodigo().equalsIgnoreCase(codigo)) {
+				aux = ind;
+				encontrado = true;
+			}
+			ind++;
+		}
+		return aux;
+	}
 }
