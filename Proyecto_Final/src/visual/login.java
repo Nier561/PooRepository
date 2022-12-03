@@ -111,7 +111,9 @@ public class login extends JFrame {
 		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Control.getInstance().confirmLogin(txtUsuario.getText(),passwordField.getText())) {
+				String myPass = String.valueOf(passwordField.getPassword());
+				if(Control.getInstance().confirmLogin(txtUsuario.getText(),myPass)) {
+					System.out.println(Control.getLoginUser().getTipo());
 					Principal frame = new Principal();
 					dispose();
 					frame.setVisible(true);

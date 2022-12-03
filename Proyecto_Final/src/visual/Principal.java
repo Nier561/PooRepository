@@ -163,7 +163,8 @@ public class Principal extends JFrame {
 			}
 			{
 				JMenu mnAdministracion = new JMenu("Administracion");
-				//if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) { ESTA LINEA DA ERROR
+				//System.out.println(Control.getLoginUser().getTipo());
+				//if(!(Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador"))) {
 					//mnAdministracion.setEnabled(false);
 				//}
 				menuBar.add(mnAdministracion);
