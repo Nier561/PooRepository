@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-//import com.sun.java.swing.plaf.windows.TMSchema.Control;
+import logical.Control;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -22,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
-
-import logical.Control;
 
 public class Principal extends JFrame {
 
@@ -165,9 +163,9 @@ public class Principal extends JFrame {
 			}
 			{
 				JMenu mnAdministracion = new JMenu("Administracion");
-				if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
-					mnAdministracion.setEnabled(false);
-				}
+				//if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) { ESTA LINEA DA ERROR
+					//mnAdministracion.setEnabled(false);
+				//}
 				menuBar.add(mnAdministracion);
 			}
 		}
