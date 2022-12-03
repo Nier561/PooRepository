@@ -4,15 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+//import com.sun.java.swing.plaf.windows.TMSchema.Control;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
-public class Principal extends JDialog {
+import logical.Control;
+
+public class Principal extends JFrame {
 
 	/**
 	 * 
@@ -37,7 +50,22 @@ public class Principal extends JDialog {
 	 * Create the dialog.
 	 */
 	public Principal() {
-		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new FileOutputStream("empresa.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Control.getInstance());
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		setBounds(100, 100, 900, 700);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -134,6 +162,13 @@ public class Principal extends JDialog {
 					});
 					mnCentro.add(mntmNewMenuItem_3);
 				}
+			}
+			{
+				JMenu mnAdministracion = new JMenu("Administracion");
+				if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")) {
+					mnAdministracion.setEnabled(false);
+				}
+				menuBar.add(mnAdministracion);
 			}
 		}
 	}
