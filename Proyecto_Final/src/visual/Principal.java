@@ -163,10 +163,9 @@ public class Principal extends JFrame {
 			}
 			{
 				JMenu mnAdministracion = new JMenu("Administracion");
-				//System.out.println(Control.getLoginUser().getTipo());
-				//if(!(Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador"))) {
-					//mnAdministracion.setEnabled(false);
-				//}
+				if(!(Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador"))) {
+					mnAdministracion.setEnabled(false);
+				}
 				menuBar.add(mnAdministracion);
 			}
 		}

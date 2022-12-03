@@ -43,7 +43,7 @@ public class Control implements Serializable{
 	}
 
 	public static void setLoginUser(User loginUser) {
-		LoginUser = loginUser;
+		Control.LoginUser = loginUser;
 	}
 
 	public static long getSerialversionuid() {
