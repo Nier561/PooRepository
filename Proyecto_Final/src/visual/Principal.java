@@ -1,14 +1,13 @@
 package visual;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logical.Control;
+import logical.Empresa;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -16,12 +15,12 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 public class Principal extends JFrame {
 
@@ -67,9 +66,24 @@ public class Principal extends JFrame {
 		setBounds(100, 100, 900, 700);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JButton btnNewButton = new JButton("Salvar");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Empresa.getInstance().save();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			btnNewButton.setBounds(776, 593, 97, 25);
+			contentPanel.add(btnNewButton);
+		}
 		{
 			JMenuBar menuBar = new JMenuBar();
 			setJMenuBar(menuBar);

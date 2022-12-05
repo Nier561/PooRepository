@@ -1,7 +1,13 @@
 package logical;
 
-public class Centro {
+import java.io.Serializable;
+
+public class Centro implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1722582895446153972L;
 	private String codigo;
 	private String nombre;
 	private String ciudad;

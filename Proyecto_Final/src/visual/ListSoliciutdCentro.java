@@ -36,6 +36,7 @@ public class ListSoliciutdCentro extends JDialog {
 	private DefaultTableModel model;
 	private Object[] rows;
 	private SolicitudCentro selected = null;
+	private JButton btnMatches;
 
 	/**
 	 * Launch the application.
@@ -82,6 +83,7 @@ public class ListSoliciutdCentro extends JDialog {
 					rowSelected = table.getSelectedRow();
 					if(rowSelected >= 0) {
 						btnEliminar.setEnabled(true);
+						btnMatches.setEnabled(true);
 						selected = Empresa.getInstance().buscarSolicitudCentroByCod(table.getValueAt(rowSelected, 0).toString());
 					}
 				}
@@ -105,10 +107,22 @@ public class ListSoliciutdCentro extends JDialog {
 								Empresa.getInstance().eliminarSolicitudCentro(selected);
 								loadSolCentro();
 								btnEliminar.setEnabled(false);
+								btnMatches.setEnabled(false);
 							}
 						}
 					}
 				});
+				{
+					btnMatches = new JButton("Listar Matches");
+					btnMatches.setEnabled(false);
+					btnMatches.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListMatchPersonal match = new ListMatchPersonal(Empresa.getInstance().buscarIndBySolicitudCentro(selected.getCodigo()));
+							match.setVisible(true);
+						}
+					});
+					buttonPane.add(btnMatches);
+				}
 				btnEliminar.setEnabled(false);
 				btnEliminar.setActionCommand("OK");
 				buttonPane.add(btnEliminar);

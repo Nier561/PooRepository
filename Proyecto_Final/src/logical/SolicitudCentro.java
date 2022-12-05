@@ -1,7 +1,13 @@
 package logical;
 
-public class SolicitudCentro {
+import java.io.Serializable;
+
+public class SolicitudCentro implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4076665654698112700L;
 	private String codigo;
 	private String codCentro;
 	private String tipoPersonal;

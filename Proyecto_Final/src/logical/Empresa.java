@@ -1,17 +1,26 @@
 package logical;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class Empresa {
-	
+
+public class Empresa{
+
 	private ArrayList<SolicitudPersonal> listSolicitudPersonal;
 	private ArrayList<SolicitudCentro> listSolicitudCentro;
 	private ArrayList<Personal> listPersonal;
 	private ArrayList<Centro> listCentro;
+	private ArrayList<Integer> gens;
 	private static Empresa empresa = null;
-	public static int generadorSolicitudPersonal = 1;
-	public static int generadorSolicitudCentro = 1;
-	public static int generadorCentro = 1;
+	public int generadorSolicitudPersonal = 1;
+	public int generadorSolicitudCentro = 1;
+	public int generadorCentro = 1;
+	
 	
 	private Empresa() {
 		super();
@@ -19,6 +28,10 @@ public class Empresa {
 		this.listSolicitudCentro = new ArrayList<SolicitudCentro>();
 		this.listPersonal = new ArrayList<Personal>();
 		this.listCentro = new ArrayList<Centro>();
+		this.gens = new ArrayList<Integer>();
+        gens.add(0, this.generadorSolicitudPersonal);
+        gens.add(1, this.generadorSolicitudCentro);
+        gens.add(2, this.generadorSolicitudPersonal);
 	}
 	
 	public static Empresa getInstance(){
@@ -26,6 +39,122 @@ public class Empresa {
 			   empresa = new Empresa();  
 		   } 	   
 		return empresa;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void load() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileInputStream fileStream = new FileInputStream("save_centro.dat");
+        ObjectInputStream objStream = new ObjectInputStream(fileStream);
+        this.listCentro = (ArrayList<Centro>)objStream.readObject();
+        objStream.close();
+        
+        fileStream = new FileInputStream("save_personal.dat");
+        objStream = new ObjectInputStream(fileStream);
+        this.listPersonal = (ArrayList<Personal>)objStream.readObject();
+        objStream.close();
+        
+        fileStream = new FileInputStream("save_solPer.dat");
+        objStream = new ObjectInputStream(fileStream);
+        this.listSolicitudPersonal = (ArrayList<SolicitudPersonal>)objStream.readObject();
+        objStream.close();
+        
+        fileStream = new FileInputStream("save_solCen.dat");
+        objStream = new ObjectInputStream(fileStream);
+        this.listSolicitudCentro = (ArrayList<SolicitudCentro>)objStream.readObject();
+        objStream.close();
+        
+        fileStream = new FileInputStream("save_gens.dat");
+        objStream = new ObjectInputStream(fileStream);
+        this.gens = (ArrayList<Integer>)objStream.readObject();
+        this.generadorCentro = this.gens.get(0);
+        this.generadorSolicitudCentro = this.gens.get(1);
+        this.generadorSolicitudPersonal = this.gens.get(2);
+        objStream.close();
+	}
+	
+	public void save() throws FileNotFoundException, IOException {
+		FileOutputStream fileStream = new FileOutputStream("save_personal.dat");
+		ObjectOutputStream objStream = new ObjectOutputStream(fileStream);
+		objStream.writeObject(listPersonal);
+		objStream.flush();
+		objStream.close();
+		
+		fileStream = new FileOutputStream("save_centro.dat");
+        objStream = new ObjectOutputStream(fileStream);
+		objStream.writeObject(listCentro);
+		objStream.flush();
+        objStream.close();
+        
+        fileStream = new FileOutputStream("save_solPer.dat");
+        objStream = new ObjectOutputStream(fileStream);
+		objStream.writeObject(listSolicitudPersonal);
+		objStream.flush();
+        objStream.close();
+        
+        fileStream = new FileOutputStream("save_solCen.dat");
+        objStream = new ObjectOutputStream(fileStream);
+		objStream.writeObject(listSolicitudCentro);
+		objStream.flush();
+        objStream.close();
+        
+        gens.add(0, this.generadorCentro);
+        gens.add(1, this.generadorSolicitudCentro);
+        gens.add(2, this.generadorSolicitudPersonal);
+        fileStream = new FileOutputStream("save_gens.dat");
+        objStream = new ObjectOutputStream(fileStream);
+		objStream.writeObject(gens);
+		objStream.flush();
+        objStream.close();
+	}
+	
+
+	public int match(SolicitudCentro solCen, SolicitudPersonal solPer) {
+		int match = 0;
+		String tipo = identificarTipo(buscarPersonalByCedula(solPer.getCedulaPersonal()));
+		if(tipo.equalsIgnoreCase(solCen.getTipoPersonal()))
+			match += 30;
+		switch(tipo){
+		
+			case "Universitario":
+				if(solPer.getCarrera().equalsIgnoreCase(solCen.getCarrera()))
+					match += 15;
+				break;
+				
+			case "Tecnico":
+				if(solPer.getAgnosExp() >= solCen.getAnoExp())
+					match += 5;
+				if(solPer.getAreaTecnica().equalsIgnoreCase(solCen.getAreTecnica()))
+					match += 10;
+				break;
+			
+			case "Obrero":
+				if(solPer.getOficio().equalsIgnoreCase(solCen.getOficio()))
+					match += 15;
+				break;
+		}
+		
+		if(solPer.getTipoContrato().equalsIgnoreCase(solCen.getTipoContrato()))
+			match += 15;
+		
+		if(solPer.getSueldoDeseado().equalsIgnoreCase(solCen.getSueldo()))
+			match += 15;
+		
+		if (!solCen.getDispMudarse())
+			match += 10;
+		else if(solPer.getDispMudarse() == solCen.getDispMudarse())
+			match += 10;
+		
+		if (!solCen.getIngles())
+			match += 10;
+		else if(solPer.getIngles() == solCen.getIngles())
+			match += 10;
+		
+		if (!solCen.getLicenciaConducir())
+			match += 5;
+		else if(solPer.getLicenciaConducir() == solCen.getLicenciaConducir())
+			match += 5;
+		
+		return match;
 	}
 	
 	public ArrayList<SolicitudPersonal> getListSolicitudPersonal() {
@@ -52,11 +181,27 @@ public class Empresa {
 	public void setListCentro(ArrayList<Centro> listCentro) {
 		this.listCentro = listCentro;
 	}
-	
+	public int getGeneradorSolicitudPersonal() {
+		return generadorSolicitudPersonal;
+	}
+	public void setGeneradorSolicitudPersonal(int generadorSolicitudPersonal) {
+		this.generadorSolicitudPersonal = generadorSolicitudPersonal;
+	}
+	public int getGeneradorSolicitudCentro() {
+		return generadorSolicitudCentro;
+	}
+	public void setGeneradorSolicitudCentro(int generadorSolicitudCentro) {
+		this.generadorSolicitudCentro = generadorSolicitudCentro;
+	}
+	public int getGeneradorCentro() {
+		return generadorCentro;
+	}
+	public void setGeneradorCentro(int generadorCentro) {
+		this.generadorCentro = generadorCentro;
+	}
 	public void insertarPersonal(Personal personal) {
 		listPersonal.add(personal);
 	}
-	
 	public void insertarCentro(Centro centro) {
 		listCentro.add(centro);
 		generadorCentro++;

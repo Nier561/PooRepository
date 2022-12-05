@@ -1,7 +1,13 @@
 package logical;
 
-public class Obrero extends Personal{
+import java.io.Serializable;
 
+public class Obrero extends Personal implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4470469073842879170L;
 	private String oficio;
 	
 	public Obrero(String cedula, String nombre, String ciudad, String telefono, String oficio) {

@@ -112,7 +112,7 @@ public class RegSolicitudPersonal extends JDialog {
 				txtCodigo.setBounds(157, 21, 218, 20);
 				panel.add(txtCodigo);
 				txtCodigo.setColumns(10);
-				txtCodigo.setText("PRSNL-"+String.valueOf(Empresa.generadorSolicitudPersonal));
+				txtCodigo.setText("PRSNL-"+String.valueOf(Empresa.getInstance().getGeneradorSolicitudPersonal()));
 			}
 			{
 				txtCedula = new JTextField();
@@ -200,7 +200,7 @@ public class RegSolicitudPersonal extends JDialog {
 		}
 	}
 	private void clean() {
-		txtCodigo.setText("PRSNL-"+String.valueOf(Empresa.generadorSolicitudPersonal));
+		txtCodigo.setText("PRSNL-"+String.valueOf(Empresa.getInstance().getGeneradorSolicitudPersonal()));
 		txtCedula.setText("");
 		cbxTipoContrato.setSelectedIndex(0);
 		cbxTipoContrato.setSelectedIndex(0);

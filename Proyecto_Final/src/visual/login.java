@@ -11,10 +11,10 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import logical.Control;
+import logical.Empresa;
 import logical.User;
 
 import javax.swing.JLabel;
@@ -26,6 +26,10 @@ import java.awt.event.ActionEvent;
 
 public class login extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JButton btnLogin;
@@ -35,6 +39,19 @@ public class login extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			Empresa.getInstance().load();
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (ClassNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} 
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				FileInputStream empresa;
@@ -81,6 +98,7 @@ public class login extends JFrame {
 	 * Create the frame.
 	 */
 	public login() {
+		setResizable(false);
 		setTitle("login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 257);

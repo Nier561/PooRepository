@@ -126,7 +126,7 @@ public class RegSolicitudCentro extends JDialog {
 				txtCodigo.setBounds(157, 21, 218, 20);
 				panel.add(txtCodigo);
 				txtCodigo.setColumns(10);
-				txtCodigo.setText("CNTR-"+String.valueOf(Empresa.generadorSolicitudCentro));
+				txtCodigo.setText("CNTR-"+String.valueOf(Empresa.getInstance().getGeneradorSolicitudCentro()));
 			}
 			{
 				txtCodigoCentro = new JTextField();
@@ -316,7 +316,7 @@ public class RegSolicitudCentro extends JDialog {
 		}
 	}
 	private void clean() {
-		txtCodigo.setText("CNTR-"+String.valueOf(Empresa.generadorSolicitudCentro));
+		txtCodigo.setText("CNTR-"+String.valueOf(Empresa.getInstance().getGeneradorSolicitudCentro()));
 		txtCodigoCentro.setText("");
 		txtCarrera.setText("");
 		txtAreaTec.setText("");

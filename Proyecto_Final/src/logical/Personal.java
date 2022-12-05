@@ -1,7 +1,13 @@
 package logical;
 
-public abstract class Personal {
+import java.io.Serializable;
+
+public abstract class Personal implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2274528870932035678L;
 	protected String cedula;
 	protected String nombre;
 	protected String ciudad;

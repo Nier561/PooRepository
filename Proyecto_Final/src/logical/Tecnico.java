@@ -1,7 +1,13 @@
 package logical;
 
-public class Tecnico extends Personal{
+import java.io.Serializable;
 
+public class Tecnico extends Personal implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4404297198586163246L;
 	private int anoExp;
 	private String areaTecnica;
 	

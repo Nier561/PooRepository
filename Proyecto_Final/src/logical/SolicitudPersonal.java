@@ -1,7 +1,13 @@
 package logical;
 
-public class SolicitudPersonal {
+import java.io.Serializable;
+
+public class SolicitudPersonal implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3135542368608565153L;
 	private String codigo;
 	private String cedulaPersonal;
 	private String tipoContrato;
