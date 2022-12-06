@@ -101,6 +101,7 @@ public class ListPersonal extends JDialog {
 						if(selected != null) {
 							option = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas borrar la cuenta con el codigo: "+selected.getCedula(), "Confirmacion", JOptionPane.YES_NO_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
+								JOptionPane.showMessageDialog(null, "Se elimino la cuenta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 								Empresa.getInstance().eliminarPersonal(selected);
 								loadPersonal();
 								btnEliminar.setEnabled(false);

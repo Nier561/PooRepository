@@ -104,6 +104,7 @@ public class ListSoliciutdCentro extends JDialog {
 						if(selected != null) {
 							option = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas borrar la solicitud con el codigo: "+selected.getCodigo(), "Confirmacion", JOptionPane.YES_NO_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
+								JOptionPane.showMessageDialog(null, "Se elimino la solicitud", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 								Empresa.getInstance().eliminarSolicitudCentro(selected);
 								loadSolCentro();
 								btnEliminar.setEnabled(false);

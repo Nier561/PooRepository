@@ -101,6 +101,7 @@ public class ListCentro extends JDialog {
 						if(selected != null) {
 							option = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas borrar el centro con el codigo: "+selected.getCodigo(), "Confirmacion", JOptionPane.YES_NO_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
+								JOptionPane.showMessageDialog(null, "Se borro el centro", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 								Empresa.getInstance().eliminarCentro(selected);
 								loadCentro();
 								btnEliminar.setEnabled(false);
