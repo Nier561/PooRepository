@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logical.Control;
 import logical.Empresa;
 import logical.SolicitudPersonal;
 
@@ -81,7 +82,7 @@ public class ListMatchPersonal extends JDialog {
 						public void mouseClicked(MouseEvent e) {
 							int rowSelected = -1;
 							rowSelected = table.getSelectedRow();
-							if(rowSelected >= 0) {
+							if(rowSelected >= 0 && !(Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador"))) {
 								btnContratar.setEnabled(true);
 								selected = Empresa.getInstance().buscarSolicitudPersonalByCodigo(table.getValueAt(rowSelected, 0).toString());
 							}
