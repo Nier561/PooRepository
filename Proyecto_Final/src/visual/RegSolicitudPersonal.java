@@ -153,33 +153,38 @@ public class RegSolicitudPersonal extends JDialog {
 						int agnosExp = 0;
 						String areaTec = null;
 						String oficio = null;
-						Personal auxPersonal = Empresa.getInstance().buscarPersonalByCedula(cedulaPersonal);
-						if(auxPersonal instanceof Universitario) {
-							carrera = ((Universitario) auxPersonal).getCarrera();
+						if(Empresa.getInstance().buscarPersonalByCedula(cedulaPersonal) == null) {
+							JOptionPane.showMessageDialog(null, "La cedula digitada no se encuentra en el registro", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						}
-						
-						if(auxPersonal instanceof Tecnico) {
-							agnosExp = ((Tecnico) auxPersonal).getAnoExp();
-							areaTec = ((Tecnico) auxPersonal).getAreaTecnica();
+						else {
+							Personal auxPersonal = Empresa.getInstance().buscarPersonalByCedula(cedulaPersonal);
+							if(auxPersonal instanceof Universitario) {
+								carrera = ((Universitario) auxPersonal).getCarrera();
+							}
+							
+							if(auxPersonal instanceof Tecnico) {
+								agnosExp = ((Tecnico) auxPersonal).getAnoExp();
+								areaTec = ((Tecnico) auxPersonal).getAreaTecnica();
+							}
+							
+							if(auxPersonal instanceof Obrero) {
+								oficio = ((Obrero) auxPersonal).getOficio();
+							}
+							if(rdbtnMudarse.isSelected()) {
+								mudarse = true;
+							}
+							
+							if(rdbtnLicencia.isSelected()) {
+								licencia = true;
+							}
+							
+							if(rdbtnIngles.isSelected()) {
+								ingles = true;
+							}
+							SolicitudPersonal SP = new SolicitudPersonal(codigo,cedulaPersonal,tipoContrato,sueldoDeseado,mudarse,licencia,ingles,carrera,agnosExp,areaTec,oficio);
+							Empresa.getInstance().insertarSolicitudPersonal(SP);
+							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						}
-						
-						if(auxPersonal instanceof Obrero) {
-							oficio = ((Obrero) auxPersonal).getOficio();
-						}
-						if(rdbtnMudarse.isSelected()) {
-							mudarse = true;
-						}
-						
-						if(rdbtnLicencia.isSelected()) {
-							licencia = true;
-						}
-						
-						if(rdbtnIngles.isSelected()) {
-							ingles = true;
-						}
-						SolicitudPersonal SP = new SolicitudPersonal(codigo,cedulaPersonal,tipoContrato,sueldoDeseado,mudarse,licencia,ingles,carrera,agnosExp,areaTec,oficio);
-						Empresa.getInstance().insertarSolicitudPersonal(SP);
-						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();
 					}
 				});

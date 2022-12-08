@@ -293,9 +293,14 @@ public class RegSolicitudCentro extends JDialog {
 						Boolean licencia = rdbtnLicencia.isSelected();
 						Boolean ingles = rdbtnIngles.isSelected();
 						Boolean mudarse = rdbtnMudarse.isSelected();
-						SolicitudCentro auxSol = new SolicitudCentro(codigo, codigoCentro, tipoPersonal, cantPersonal,tipoContrato, sueldoDeseado, mudarse, licencia, ingles, carrera, oficio, anoExp, areaTecnica);
-						Empresa.getInstance().insertarSolicitudCentro(auxSol);
-						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+						if(Empresa.getInstance().buscarCentroByCod(codigoCentro) == null) {
+							JOptionPane.showMessageDialog(null, "La cedula digitada no se encuentra en el registro", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
+							SolicitudCentro auxSol = new SolicitudCentro(codigo, codigoCentro, tipoPersonal, cantPersonal,tipoContrato, sueldoDeseado, mudarse, licencia, ingles, carrera, oficio, anoExp, areaTecnica);
+							Empresa.getInstance().insertarSolicitudCentro(auxSol);
+							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+						}
 						clean();
 					}
 				});

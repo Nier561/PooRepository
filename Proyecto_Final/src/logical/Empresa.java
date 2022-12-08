@@ -220,29 +220,33 @@ public class Empresa{
 	public Personal buscarPersonalByCedula(String cedula) {
 		Personal auxPersonal = null;
 		boolean encontrado = false;
+		Personal personal = null;
 		int ind = 0;
 		while(ind < listPersonal.size() && !encontrado) {
 			auxPersonal = listPersonal.get(ind);
 			if(auxPersonal.getCedula().equalsIgnoreCase(cedula)) {
 				encontrado = true;
+				personal = auxPersonal;
 			}
 			ind++;
 		}
-		return auxPersonal;
+		return personal;
 	}
 	
 	public SolicitudPersonal buscarSolicitudPersonalByCodigo(String codigo) {
 		SolicitudPersonal auxSolicitudPersonal = null;
+		SolicitudPersonal soliPersonal = null;
 		boolean encontrado = false;
 		int ind = 0;
 		while(ind < listSolicitudPersonal.size() && !encontrado) {
 			auxSolicitudPersonal = listSolicitudPersonal.get(ind);
 			if(auxSolicitudPersonal.getCodigo().equalsIgnoreCase(codigo)) {
 				encontrado = true;
+				soliPersonal = auxSolicitudPersonal;
 			}
 			ind++;
 		}
-		return auxSolicitudPersonal;
+		return soliPersonal;
 	}
 
 	public void eliminarPersonal(Personal selected) {
@@ -301,16 +305,18 @@ public class Empresa{
 	
 	public Centro buscarCentroByCod(String cod) {
 		Centro auxCentro = null;
+		Centro centro = null;
 		boolean encontrado = false;
 		int ind = 0;
 		while(ind < listCentro.size() && !encontrado) {
 			auxCentro = listCentro.get(ind);
 			if(auxCentro.getCodigo().equalsIgnoreCase(cod)) {
 				encontrado = true;
+				centro = auxCentro;
 			}
 			ind++;
 		}
-		return auxCentro;
+		return centro;
 	}
 	
 	public void eliminarCentro(Centro selected) {
@@ -335,16 +341,18 @@ public class Empresa{
 	
 	public SolicitudCentro buscarSolicitudCentroByCod(String cod) {
 		SolicitudCentro auxSolCentro = null;
+		SolicitudCentro soliCentro = null;
 		boolean encontrado = false;
 		int ind = 0;
 		while(ind < listSolicitudCentro.size() && !encontrado) {
 			auxSolCentro = listSolicitudCentro.get(ind);
 			if(auxSolCentro.getCodigo().equalsIgnoreCase(cod)) {
 				encontrado = true;
+				soliCentro = auxSolCentro;
 			}
 			ind++;
 		}
-		return auxSolCentro;
+		return soliCentro;
 	}
 	
 	public void eliminarSolicitudCentro(SolicitudCentro selected) {
