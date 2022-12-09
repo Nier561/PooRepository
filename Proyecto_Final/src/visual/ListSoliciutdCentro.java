@@ -120,6 +120,9 @@ public class ListSoliciutdCentro extends JDialog {
 						public void actionPerformed(ActionEvent e) {
 							ListMatchPersonal match = new ListMatchPersonal(Empresa.getInstance().buscarIndBySolicitudCentro(selected.getCodigo()));
 							match.setVisible(true);
+							loadSolCentro();
+							setVisible(false);
+						
 						}
 					});
 					buttonPane.add(btnMatches);

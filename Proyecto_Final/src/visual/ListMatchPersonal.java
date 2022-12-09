@@ -82,9 +82,11 @@ public class ListMatchPersonal extends JDialog {
 						public void mouseClicked(MouseEvent e) {
 							int rowSelected = -1;
 							rowSelected = table.getSelectedRow();
-							if(rowSelected >= 0 && !(Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador"))) {
+							if(rowSelected >= 0 ) {
 								btnContratar.setEnabled(true);
 								selected = Empresa.getInstance().buscarSolicitudPersonalByCodigo(table.getValueAt(rowSelected, 0).toString());
+								if(selected == null)
+									System.out.println("Why the fuc");
 							}
 						}
 					});
@@ -110,6 +112,12 @@ public class ListMatchPersonal extends JDialog {
 							if(option == JOptionPane.OK_OPTION) {
 								Empresa.getInstance().eliminarSolicitudPersonal(selected);
 								Empresa.getInstance().buscarPersonalByCedula(selected.getCedulaPersonal()).setEmpleado(true);
+								Empresa.getInstance().getListSolicitudCentro().get(ind).setCantPersonal(Empresa.getInstance().getListSolicitudCentro().get(ind).getCantPersonal() - 1);
+								if (Empresa.getInstance().getListSolicitudCentro().get(ind).getCantPersonal() == 0) {
+									JOptionPane.showMessageDialog(null, "Ya se contrataron la cantidad de empleados deseads. Se eliminara la solicitud.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+									setVisible(false);
+									Empresa.getInstance().getListSolicitudCentro().remove(ind);
+								}
 								loadMatches(ind);
 								btnContratar.setEnabled(false);
 							}
@@ -139,7 +147,7 @@ public class ListMatchPersonal extends JDialog {
 		rows = new Object[model.getColumnCount()];
 		for (SolicitudPersonal solicitudPersonal : Empresa.getInstance().getListSolicitudPersonal()) {
 			if(!Empresa.getInstance().buscarPersonalByCedula(solicitudPersonal.getCedulaPersonal()).isEmpleado()) {
-				rows[0] = solicitudPersonal.getCedulaPersonal();
+				rows[0] = solicitudPersonal.getCodigo();
 				rows[1] = Empresa.getInstance().buscarPersonalByCedula(solicitudPersonal.getCedulaPersonal()).getNombre();
 				rows[2] = Empresa.getInstance().match(Empresa.getInstance().getListSolicitudCentro().get(ind), solicitudPersonal);
 				
