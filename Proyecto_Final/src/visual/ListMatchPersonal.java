@@ -74,7 +74,7 @@ public class ListMatchPersonal extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					model = new DefaultTableModel();
-					String[] columnas = {"Cedula" , "Nombre", "Match Percent"};
+					String[] columnas = {"Codigo" , "Nombre", "Match Percent"};
 					model.setColumnIdentifiers(columnas);
 					table = new JTable();
 					table.addMouseListener(new MouseAdapter() {
@@ -85,8 +85,6 @@ public class ListMatchPersonal extends JDialog {
 							if(rowSelected >= 0 ) {
 								btnContratar.setEnabled(true);
 								selected = Empresa.getInstance().buscarSolicitudPersonalByCodigo(table.getValueAt(rowSelected, 0).toString());
-								if(selected == null)
-									System.out.println("Why the fuc");
 							}
 						}
 					});
